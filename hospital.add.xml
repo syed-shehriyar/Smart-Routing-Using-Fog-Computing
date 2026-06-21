@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+
+    <poi id="hospital_1"
+         lane="61835130#1_0"
+         pos="30"
+         color="0,1,0"
+         layer="120"
+         name="Hanif Hospital"/>
+</additional>

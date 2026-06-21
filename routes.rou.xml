@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <!-- ================== VEHICLE TYPES ================== -->
+
+    <!-- Ambulance -->
+    <vType id="ambulance"
+           accel="3.0"
+           decel="4.5"
+           length="5"
+           maxSpeed="40"
+           guiShape="emergency"
+           vClass="emergency"
+           color="1,0,0"/>
+
+    <!-- Normal Cars -->
+    <vType id="car"
+           accel="1.0"
+           decel="4.5"
+           length="5"
+           maxSpeed="8"
+           minGap="1"
+           tau="2.5"
+           vClass="passenger"
+           color="1,1,0"/>
+
+    <!-- ================== TRAFFIC FLOWS ================== -->
+
+    <!-- Flow 1 -->
+    <flow id="flow_1"
+          type="car"
+          begin="0"
+          end="300"
+          number="500"
+          from="60825710#2"
+          to="-615357552#2"/>
+
+    <!-- Flow 2 -->
+    <flow id="flow_2"
+      type="car"
+      begin="0"
+      end="300"
+      number="500"
+      from="-615357552#1"
+      to="-61835224"/>
+
+    <!-- Flow 3 -->
+    <flow id="flow_3"
+          type="car"
+          begin="0"
+          end="300"
+          number="500"
+          from="615357556#1"
+          to="60825710#3"/>
+
+    <!-- ================== AMBULANCE ================== -->
+
+    <vehicle id="A1"
+             type="ambulance"
+             depart="5">
+
+        <route edges="
+            615357556#1
+            60825710#2
+            60825710#3
+            -615357552#2
+            -615357552#1
+            -615357552#0
+            -61835224
+            -61835064#1
+            61835130#0
+            61835130#1"/>
+
+        <stop lane="61835130#1_0"
+              duration="999"/>
+
+    </vehicle>
+
+</routes>
