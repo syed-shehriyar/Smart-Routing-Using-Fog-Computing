@@ -17,7 +17,11 @@ sumoCmd = [
 
 traci.start(sumoCmd)
 
+# Simulation start time
+start_time = traci.simulation.getTime()
+
 fog_alert_sent = False
+rerouted = False
 
 while traci.simulation.getMinExpectedNumber() > 0:
 
@@ -36,7 +40,9 @@ while traci.simulation.getMinExpectedNumber() > 0:
             f"Vehicles: {vehicle_count}"
         )
 
-        # Fog Node Logic
+        # -----------------------------
+        # Fog Alert
+        # -----------------------------
         if vehicle_count >= 3 and not fog_alert_sent:
 
             print("\n==============================")
@@ -49,6 +55,52 @@ while traci.simulation.getMinExpectedNumber() > 0:
 
             fog_alert_sent = True
 
+        # -----------------------------
+        # Dynamic Rerouting
+        # -----------------------------
+        if current_edge == "-615357552#2" and not rerouted:
+
+            print("\n==============================")
+            print("PRE-CONGESTION ALERT")
+            print("Ambulance approaching congested area")
+            print("Attempting reroute...")
+            print("==============================")
+
+            new_route = [
+                "-615357552#2",
+                "60825792#2",
+                "60825792#3",
+                "-895066327#0",
+                "-61835139#1",
+                "-61835139#0",
+                "61835130#1"
+            ]
+
+            try:
+
+                traci.vehicle.setRoute("A1", new_route)
+
+                print("\n==============================")
+                print("DYNAMIC REROUTING ACTIVATED")
+                print("New Route Applied")
+                print("==============================\n")
+
+                rerouted = True
+
+            except Exception as e:
+
+                print("\n==============================")
+                print("ROUTE ERROR")
+                print(e)
+                print("==============================\n")
+
     time.sleep(0.5)
+
+arrival_time = traci.simulation.getTime()
+
+print("\n====================")
+print("AMBULANCE ARRIVED")
+print("Total Travel Time:", arrival_time - start_time, "seconds")
+print("====================")
 
 traci.close()
