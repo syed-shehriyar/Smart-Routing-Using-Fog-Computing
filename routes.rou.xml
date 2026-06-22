@@ -74,7 +74,8 @@
             61835130#1"/>
 
         <stop lane="61835130#1_0"
-              duration="999"/>
+      endPos="35"
+      duration="999"/>
 
     </vehicle>
 
