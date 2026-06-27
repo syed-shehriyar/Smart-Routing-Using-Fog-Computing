@@ -78,5 +78,28 @@
       duration="999"/>
 
     </vehicle>
+	
+<!-- Conventional Ambulance (No Fog Support) -->
+<vehicle id="A2"
+         type="ambulance"
+         depart="10">
+
+    <route edges="
+        615357556#1
+        60825710#2
+        60825710#3
+        -615357552#2
+        -615357552#1
+        -615357552#0
+        -61835224
+        -61835064#1
+        61835130#0
+        61835130#1"/>
+
+    <stop lane="61835130#1_0"
+          endPos="25"
+          duration="999"/>
+
+</vehicle>
 
 </routes>
