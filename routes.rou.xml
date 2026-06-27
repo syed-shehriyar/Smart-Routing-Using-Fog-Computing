@@ -25,6 +25,67 @@
            tau="2.5"
            vClass="passenger"
            color="1,1,0"/>
+		   
+		   <!-- Blue Cars -->
+    <vType id="car_blue"
+           accel="1.0"
+           decel="4.5"
+           length="5"
+           maxSpeed="8"
+           minGap="1"
+           tau="2.5"
+           vClass="passenger"
+           color="0.15,0.45,1"/>
+
+          <!-- Red Cars -->
+    <vType id="car_red"
+           accel="1.0"
+           decel="4.5"
+           length="5"
+           maxSpeed="8"
+           minGap="1"
+           tau="2.5"
+           vClass="passenger"
+           color="0.9,0.15,0.15"/>
+		   
+		   
+		   <!-- Heavy Trucks -->
+    <vType id="truck"
+           accel="0.8"
+           decel="4.0"
+           length="8"
+           maxSpeed="7"
+           minGap="2.5"
+           tau="2.8"
+           vClass="truck"
+           guiShape="truck"
+           color="0.3,0.3,0.3"/>
+		   
+		   <!-- Delivery Van -->
+		   
+	<vType id="delivery"
+           accel="0.9"
+           decel="4.2"
+           length="7"
+           maxSpeed="7"
+           minGap="2"
+           tau="2.8"
+           guiShape="delivery"
+           vClass="delivery"
+           color="0.85,0.15,0.15"/>
+		   
+		   <!-- Bus -->
+		   
+	<vType id="bus"
+           accel="0.7"
+           decel="4.0"
+           length="12"
+           maxSpeed="7"
+           minGap="3"
+           tau="3"
+           guiShape="bus"
+           vClass="bus"
+           color="0.15,0.4,1"/>
 
     <!-- ================== TRAFFIC FLOWS ================== -->
 
@@ -36,15 +97,49 @@
           number="500"
           from="60825710#2"
           to="-615357552#2"/>
+		  
+		  <!-- Flow 1 (Blue Cars) -->
+<flow id="flow_1_blue"
+      type="car_blue"
+      begin="0"
+      end="300"
+      number="125"
+      from="60825710#2"
+      to="-615357552#2"/>
+
+        <!-- Flow 1 (Red Cars) -->
+    <flow id="flow_1_red"
+          type="car_red"
+          begin="0"
+          end="300"
+          number="125"
+          from="60825710#2"
+          to="-615357552#2"/>
 
     <!-- Flow 2 -->
     <flow id="flow_2"
-      type="car"
-      begin="0"
-      end="300"
-      number="500"
-      from="-615357552#1"
-      to="-61835224"/>
+          type="car"
+          begin="0"
+          end="300"
+          number="500"
+          from="-615357552#1"
+          to="-61835224"/>
+	  
+	<flow id="flow_2_blue"
+          type="car_blue"
+          begin="0"
+          end="300"
+          number="125"
+          from="-615357552#1"
+          to="-61835224"/>
+
+    <flow id="flow_2_red"
+          type="car_red"
+          begin="0"
+          end="300"
+          number="125"
+          from="-615357552#1"
+          to="-61835224"/>
 
     <!-- Flow 3 -->
     <flow id="flow_3"
@@ -52,14 +147,131 @@
           begin="0"
           end="300"
           number="500"
-          from="615357556#1"
+          from="60825710#0"
           to="60825710#3"/>
+		  
+	<flow id="flow_3_blue"
+          type="car_blue"
+          begin="0"
+          end="300"
+          number="125"
+          from="60825710#0"
+          to="60825710#3"/>
+
+    <flow id="flow_3_red"
+          type="car_red"
+          begin="0"
+          end="300"
+          number="125"
+          from="60825710#0"
+          to="60825710#3"/>
+		  
+	<!-- ================== HEAVY TRAFFIC AREA 1 ================== -->
+
+    <route id="heavyRoute1"
+       edges="
+       895066325#0
+       61835224
+       61835261
+       895066325#2
+       895066325#3"/>
+
+    <flow id="truckFlow1"
+          type="truck"
+          route="heavyRoute1"
+          begin="0"
+          end="500"
+          probability="0.04"/>
+		  
+		  <!-- Delivery Vans -->
+    <flow id="deliveryFlow1"
+          type="delivery"
+          route="heavyRoute1"
+          begin="0"
+          end="500"
+          probability="0.018"/>
+
+          <!-- Buses -->
+    <flow id="busFlow1"
+          type="bus"
+          route="heavyRoute1"
+          begin="0"
+          end="500"
+          probability="0.010"/>
+		  
+	<!-- ================== HEAVY TRAFFIC AREA 2 ================== -->
+
+    <route id="heavyRoute2"
+       edges="
+       60825838#0
+       60825838#1
+       61835139#1
+       895066327#0
+       895066327#1
+       895066327#2"/>
+
+    <flow id="truckFlow2"
+          type="truck"
+          route="heavyRoute2"
+          begin="0"
+          end="500"
+          probability="0.04"/>
+		  
+		  <!-- Delivery Vans -->
+    <flow id="deliveryFlow2"
+          type="delivery"
+          route="heavyRoute2"
+          begin="0"
+          end="500"
+          probability="0.018"/>
+
+          <!-- Buses -->
+    <flow id="busFlow2"
+          type="bus"
+          route="heavyRoute2"
+          begin="0"
+          end="500"
+          probability="0.010"/>
+		  
+	<!-- ================== HEAVY TRAFFIC AREA 3 ================== -->
+
+    <route id="heavyRoute3"
+       edges="
+       61835064#1
+       61835224
+       615357552#0
+       615357552#1
+       615357552#2
+       -433173180"/>
+
+    <flow id="truckFlow3"
+          type="truck"
+          route="heavyRoute3"
+          begin="0"
+          end="500"
+          probability="0.04"/>
+		  
+		  <!-- Delivery Vans -->
+    <flow id="deliveryFlow3"
+          type="delivery"
+          route="heavyRoute3"
+          begin="0"
+          end="500"
+          probability="0.018"/>
+
+         <!-- Buses -->
+    <flow id="busFlow3"
+          type="bus"
+          route="heavyRoute3"
+          begin="0"
+          end="500"
+          probability="0.010"/>
 
     <!-- ================== AMBULANCE ================== -->
 
     <vehicle id="A1"
              type="ambulance"
-             depart="5">
+             depart="10">
 
         <route edges="
             615357556#1
@@ -82,7 +294,7 @@
 <!-- Conventional Ambulance (No Fog Support) -->
 <vehicle id="A2"
          type="ambulance"
-         depart="10">
+         depart="22">
 
     <route edges="
         615357556#1
